@@ -1,0 +1,6 @@
+{
+  "name": "E-Commerce Web Application",
+  "description": "A full-stack online store with a product catalog, secure shopping cart, user checkout, role-based admin dashboard, and order management, backed by Firestore.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

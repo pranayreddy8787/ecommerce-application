@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "An item available for sale in the e-commerce store.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique ID of the product." },
+        "name": { "type": "string", "description": "The name of the product." },
+        "description": { "type": "string", "description": "Detailed description of the product." },
+        "price": { "type": "number", "description": "Price of the product." },
+        "imageUrl": { "type": "string", "description": "URL to the product's main image." },
+        "category": { "type": "string", "description": "The category of the product." },
+        "stock": { "type": "number", "description": "Quantity available in stock." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp when the product was added." }
+      },
+      "required": ["name", "price", "imageUrl", "category", "stock"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order containing items and shipping info.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique ID of the order." },
+        "userId": { "type": "string", "description": "The UID of the user who placed the order." },
+        "userEmail": { "type": "string", "description": "The email of the user." },
+        "items": { "type": "array", "description": "List of ordered items." },
+        "totalAmount": { "type": "number", "description": "Total price paid." },
+        "status": { "type": "string", "enum": ["pending", "processing", "shipped", "delivered", "cancelled"], "description": "Current fulfillment status." },
+        "shippingAddress": { "type": "object", "description": "Shipping destination address details." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp when the order was placed." }
+      },
+      "required": ["userId", "userEmail", "items", "totalAmount", "status", "shippingAddress"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile with role-based access status.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The Firebase Auth UID of the user." },
+        "email": { "type": "string", "description": "The verified email address." },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "Access level of the user." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Registration date." }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Store products catalog."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Store user purchase orders."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile and role definitions."
+    }
+  }
+}
